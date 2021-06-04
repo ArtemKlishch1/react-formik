@@ -3,6 +3,9 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   /* Your site config here */
@@ -28,6 +31,14 @@ module.exports = {
         name: `images`,
         path: `${__dirname}/src/assets/images`,
       },
+    }, // plugin for graphql
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `7l5oyrigwa9t`,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: process.env.CONTENTFULL_API_KEY,
+      }, // plugin for contentfull
     },
   ],
 }
